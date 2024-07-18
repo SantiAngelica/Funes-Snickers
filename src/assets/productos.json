@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "tittle": "FIDEO",
+    "description": "fideos di maria",
+    "price": 3600,
+    "code": "f01",
+    "stock": 200,
+    "thumbnails": [
+      "src",
+      "src"
+    ],
+    "status": true,
+    "category": "comida"
+  },
+  {
+    "id": 2,
+    "tittle": "ARROZ",
+    "description": "Arroz marolio",
+    "price": 2000,
+    "code": "a01",
+    "stock": 200,
+    "thumbnails": [
+      "src",
+      "src"
+    ],
+    "status": true,
+    "category": "comida"
+  },
+  {
+    "id": 3,
+    "tittle": "Harina",
+    "description": "Harina 0000",
+    "price": 1500,
+    "code": "h01",
+    "stock": 20,
+    "thumbnails": [
+      "src",
+      "src"
+    ],
+    "status": true,
+    "category": "comida"
+  }
+]
