@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "tittle": "Harina",
+    "description": "Harina 0000",
+    "price": 1500,
+    "code": "h01",
+    "stock": 20,
+    "thumbnails": [
+      "src",
+      "src"
+    ],
+    "status": true,
+    "category": "comida"
+  },
+  {
+    "id": 2,
+    "tittle": "Fideo",
+    "description": "Fideos Di Maria",
+    "price": 2500,
+    "code": "F01",
+    "stock": 30,
+    "thumbnails": [
+      "src",
+      "src"
+    ],
+    "status": true,
+    "category": "comida"
+  }
+]
