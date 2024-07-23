@@ -45,40 +45,25 @@ class ProductManager {
             return prod
         }
         else {
-            return "error"
+            return null
         }
     }
 
-    async editProduct(id, newProperties) {
+    async editProduct(id, newProperties){
         const products = await this.getProducts()
         let prod = products.find(prod => prod.id == id)
-        if(!prod){
+        if(!prod)
+        {
             return
         }
-        if (newProperties.id) {
-            console.log("no se puede modificar el ID de un producto")
-        }
-        if (newProperties.tittle) {
-            prod.tittle = newProperties.tittle
-        }
-        if (newProperties.description) {
-            prod.description = newProperties.description
-        }
-        if (newProperties.price) {
-            prod.price = newProperties.price
-        }
-        if (newProperties.thumbnails) {
-            prod.thumbnails = newProperties.thumbnails
-        }
-        if (newProperties.code) {
-            prod.code = newProperties.code
-        }
-        if (newProperties.stock) {
-            prod.stock = newProperties.stock
-        }
-        if (newProperties.category) {
-            prod.category = newProperties.category
-        }
+        newProperties.id && console.log("no se puede modificar el ID de un producto")
+        newProperties.tittle && (prod.tittle = newProperties.tittle)
+        newProperties.description && (prod.description = newProperties.description)
+        newProperties.price && (prod.price = newProperties.price)
+        newProperties.thumbnails && (prod.thumbnails = newProperties.thumbnails)
+        newProperties.code && (prod.code = newProperties.code)
+        newProperties.stock && (prod.stock = newProperties.stock)
+        newProperties.category && (prod.category = newProperties.category)
         await fs.promises.writeFile("./src/assets/productos.json", JSON.stringify(products, null, 2))
     }
 }
@@ -96,7 +81,11 @@ router.get("/", async (req, res) => {
 router.get("/:pid", async (req, res) => {
     let id = req.params.pid
     const product = await manager.getProductById(id)
-    res.send(product)
+    if(product){
+        res.send(product)
+    }else{
+        res.status(404).send({status:"incomplete", message: "Producto no encontrado"})
+    }
 })
 
 
