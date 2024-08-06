@@ -49,11 +49,16 @@ class ProductManager {
 
     async editProduct(id, newProperties){
         const products = await this.getProducts()
+        
+        
+      
         let prod = products.find(prod => prod.id == id)
         if(!prod)
         {
             return
         }
+        products.some(prod => prod.code == newProperties.code) && (newProperties.code = prod.code)
+
         newProperties.id && console.log("no se puede modificar el ID de un producto")
         newProperties.tittle && (prod.tittle = newProperties.tittle)
         newProperties.description && (prod.description = newProperties.description)
@@ -63,6 +68,19 @@ class ProductManager {
         newProperties.stock && (prod.stock = newProperties.stock)
         newProperties.category && (prod.category = newProperties.category)
         await fs.promises.writeFile("./src/assets/products.json", JSON.stringify(products, null, 2))
+    }
+
+    async deleteProduct(id){
+        const products = await this.getProducts()
+        let indexProd = products.findIndex(prod => prod.id == id)
+        if(indexProd !== -1){
+            products.splice(indexProd,1)
+            await fs.promises.writeFile("./src/assets/products.json", JSON.stringify(products, null, 2))
+            return true
+        }
+        else{
+            return false
+        }
     }
 }
 

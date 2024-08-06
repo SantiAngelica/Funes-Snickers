@@ -74,13 +74,17 @@ router.delete("/:pid", async(req, res) => {
     let indexProd = products.findIndex(prod => prod.id == id)
     if(indexProd !== -1){
         products.splice(indexProd,1)
-        await fs.promises.writeFile("./src/assets/productos.json", JSON.stringify(products, null, 2))
+        await fs.promises.writeFile("./src/assets/products.json", JSON.stringify(products, null, 2))
         res.send({status: "success", message:"Producto eliminado"})
     }
     else{
         res.status(404).send({status: "incomplete", message:"Producto no encontrado"})
     }
 })
+
+
+
+
 
 
 

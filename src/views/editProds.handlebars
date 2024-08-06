@@ -1,0 +1,66 @@
+
+<div class="container box-form my-5 p-3">
+    <h2 class="text-center">Editar producto</h2>
+    <div class="container-form ">
+        <form class="form" id="form-edit">
+            <div class="d-flex justify-content-between">
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input required="" type="text" class="form-control" id="category-id"
+                            aria-describedby="categoryHelp" name="category" value="{{prod.category}}">
+                        <div id="categoryHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tittle" class="form-label">Tittle</label>
+                        <input required="" type="text" class="form-control" id="tittle-id" name="tittle" value="{{prod.tittle}}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input required="" type="text" class="form-control" id="description-id" name="description" value="{{prod.description}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Code</label>
+                        <input required="" type="text" class="form-control" id="code-id" name="code" value={{prod.code}}>
+
+                        <div id="codeHelp" class="form-text"></div>
+                    </div>
+                </div>
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID</label>
+                        <input required="" type="number" class="form-control" id="id" name="id" value={{prod.id}} readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input required="" type="number" class="form-control" id="stock-id" name="stock" value={{prod.stock}}> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input required="" type="number" class="form-control" id="price-id" name="price" value={{prod.price}}>
+                    </div>
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select mb-3" aria-label="status" name="status">
+                        <option selected>true</option>
+                        <option value="1">false</option>
+                    </select>
+                    
+                </div>
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="thumbnails" class="form-label">Images (URL)</label>
+                        <input type="url" class="form-control" id="thumbnails-edit" name="thumbnails" data-url={{ json prod.thumbnails}} data-id={{prod.id}}>
+                        <button type="button" class="btn btn-outline-success mt-2" id="btn-add-url-edit">Add URL</button>
+                    </div>
+                    <div id="box-url-edit" class="d-flex flex-column"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+    
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/prodEdit.js"></script>

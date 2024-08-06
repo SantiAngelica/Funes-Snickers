@@ -1,0 +1,13 @@
+{{#each products}}
+        <div class="card rounded-4" style="width: 18rem;">
+            <figure class="figure-img rounded-top-4">
+                <img src={{this.thumbnails.[0]}} class="card-img-top rounded-top-4" alt={{this.tittle}}>
+            </figure>
+            <div class="card-body">
+                <h5 class="card-title">{{this.tittle}}</h5>
+                <p class="card-description">{{this.description}}</p>
+                <p class="card-text">${{this.price}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+{{/each}}

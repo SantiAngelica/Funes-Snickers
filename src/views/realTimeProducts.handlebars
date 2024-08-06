@@ -1,0 +1,72 @@
+<div class="container">
+
+    <div id="box-real-time" class=" box-cards">
+
+    </div>
+</div>
+<div class="container box-form my-5 p-3">
+    <h2 class="text-center">Añadir nuevo producto</h2>
+    <div class="container-form ">
+        <form class="form" id="form">
+            <div class="d-flex justify-content-between">
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input required="" type="text" class="form-control" id="category"
+                            aria-describedby="categoryHelp" name="category">
+                        <div id="categoryHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tittle" class="form-label">Tittle</label>
+                        <input required="" type="text" class="form-control" id="tittle" name="tittle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input required="" type="text" class="form-control" id="description" name="description">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Code</label>
+                        <input required="" type="text" class="form-control" id="code" name="code">
+                        <div id="codeHelp" class="form-text"></div>
+                    </div>
+                </div>
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input required="" type="number" class="form-control" id="stock" name="stock">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input required="" type="number" class="form-control" id="price" name="price">
+                    </div>
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select mb-3" aria-label="status" name="status">
+                        <option selected>true</option>
+                        <option value="1">false</option>
+                    </select>
+                </div>
+                <div class="box-inputs">
+                    <div class="mb-3">
+                        <label for="thumbnails" class="form-label">Images (URL)</label>
+                        <input type="url" class="form-control" id="thumbnails" name="thumbnails">
+                        <button type="button" class="btn btn-outline-success mt-2" id="btn-add-url">Add URL</button>
+                    </div>
+                    <div id="box-url" class="d-flex flex-column"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+            <button type="reset" class="btn btn-outline-danger">Delete</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="/js/index.js"></script>
