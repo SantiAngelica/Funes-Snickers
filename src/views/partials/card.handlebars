@@ -1,13 +1,22 @@
-{{#each products}}
-        <div class="card rounded-4" style="width: 18rem;">
-            <figure class="figure-img rounded-top-4">
-                <img src={{this.thumbnails.[0]}} class="card-img-top rounded-top-4" alt={{this.tittle}}>
-            </figure>
-            <div class="card-body">
-                <h5 class="card-title">{{this.tittle}}</h5>
-                <p class="card-description">{{this.description}}</p>
-                <p class="card-text">${{this.price}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+{{#each response.payload}}
+<div class="card rounded-4 card-show" style="width: 18rem;">
+    <figure class="figure-img rounded-top-4">
+        <img src={{this.thumbnails.[0]}} class="card-img-top rounded-top-4" alt={{this.tittle}}>
+    </figure>
+    <div class="card-body">
+        <h5 class="card-title">{{this.tittle}}</h5>
+        <p class="card-description">{{this.description}}</p>
+        <p class="card-text">${{this.price}}</p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-primary" >
+            Añadir al carrito
+        </button>
+        <a href="/products/{{this.category}}/{{this._id}}" class="btn btn-outline-info"><i
+                class="fa-solid fa-eye"></i></i></a>
+    </div>
+</div>
 {{/each}}
+
+
+
+

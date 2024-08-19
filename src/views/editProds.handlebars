@@ -3,7 +3,7 @@
     <h2 class="text-center">Editar producto</h2>
     <div class="container-form ">
         <form class="form" id="form-edit">
-            <div class="d-flex justify-content-between">
+            <div class="container-inputs">
                 <div class="box-inputs">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
@@ -29,8 +29,7 @@
                 </div>
                 <div class="box-inputs">
                     <div class="mb-3">
-                        <label for="id" class="form-label">ID</label>
-                        <input required="" type="number" class="form-control" id="id" name="id" value={{prod.id}} readonly>
+                        <p class="p-id">ID: {{prod._id}}</p>
                     </div>
                     <div class="mb-3">
                         <label for="stock" class="form-label">Stock</label>
@@ -50,13 +49,13 @@
                 <div class="box-inputs">
                     <div class="mb-3">
                         <label for="thumbnails" class="form-label">Images (URL)</label>
-                        <input type="url" class="form-control" id="thumbnails-edit" name="thumbnails" data-url={{ json prod.thumbnails}} data-id={{prod.id}}>
+                        <input type="url" class="form-control" id="thumbnails-edit" name="thumbnails" data-url={{ json prod.thumbnails}} data-id={{prod._id}}>
                         <button type="button" class="btn btn-outline-success mt-2" id="btn-add-url-edit">Add URL</button>
                     </div>
                     <div id="box-url-edit" class="d-flex flex-column"></div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-success">Submit</button>
+            <button type="submit" class="btn btn-outline-success mt-5">Submit</button>
     
         </form>
     </div>

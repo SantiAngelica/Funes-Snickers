@@ -1,4 +1,45 @@
-
 <div class="container box-cards mb-5">
     {{>card}}
 </div>
+
+<nav aria-label="Page navigation example" class="container navbar-pages" >
+    <ul class="pagination d-flex justify-content-center">
+        {{#if response.prevLink}}
+        <li class="page-item me-2">
+            <a class="page-link" href={{response.prevLink}} aria-label="Previous" id="prevPage">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {{else}}
+        <li class="page-item disabled me-2">
+            <a class="page-link" href="" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {{/if}}
+        <div class="d-flex" id="box-pages" data-pagination={{response.totalPages}} data-page={{response.page}}>
+            
+        </div>
+
+        {{#if response.nextLink}}
+        <li class="page-item ms-2">
+            <a class="page-link" href={{response.nextLink}} aria-label="Next" id="nextPage">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {{else}}
+        <li class="page-item disabled ms-2">
+            <a class="page-link" href="" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {{/if}}
+
+
+    </ul>
+</nav>
+
+
+
+
+<script src="/js/pagination.js"></script>

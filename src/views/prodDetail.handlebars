@@ -1,0 +1,72 @@
+<div class="card card-detail mt-5 container p-0">
+    <div class="box-detail g-0">
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner" id="box-carousel" data-url={{json prod.thumbnails}}>
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="col-md-8 body-detail">
+            <div class="card-detail-body">
+                <h5 class="card-detail-title">{{prod.tittle}}</h5>
+                <p class="card-detail-text capitalize disabled">{{prod.category}}</p>
+                <p class="card-detail-text fw-bold">${{prod.price}}</p>
+                <p class="card-detail-desc  disabled">{{prod.description}}</p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Añadir al carrito
+                </button>
+                <p class="card-detail-low disabled mb-0 stock">Stock: {{prod.stock}}</p>
+                <p class="card-detail-low disabled">Code: {{prod.code}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{prod.tittle}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <figure class="fig-modal">
+                    <img src={{prod.thumbnails.[0]}} alt="" class="img-modal">
+                </figure>
+                <div class="detail-modal">
+                    <div class="price">Precio por unidad: <p class="fw-bold">${{prod.price}}</p></div>
+                    <div class="quantity d-flex">
+                        <button class="btn btn-outline-info fs-5 btn-quantity" id="minus"><i class="fa-solid fa-minus"></i></button>
+                        <p class=" mb-0 fs-4 mx-3" id="quantity-p">1</p>
+                        <button class="btn btn-outline-info fs-5 btn-quantity" id="plus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                     <div class="price mt-2">Precio total: <p class="fw-bold" id="total-price" data-price={{prod.price}}>${{prod.price}}</p></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/detail.js"></script>

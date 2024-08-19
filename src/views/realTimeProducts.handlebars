@@ -5,11 +5,11 @@
     </div>
 </div>
 <div class="container box-form my-5 p-3">
-    <h2 class="text-center">Añadir nuevo producto</h2>
+    <h2 class="text-center addProd">Añadir nuevo producto</h2>
     <div class="container-form ">
         <form class="form" id="form">
-            <div class="d-flex justify-content-between">
-                <div class="box-inputs">
+            <div class="container-inputs">
+                <div class="box-inputs mb-3">
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
                         <input required="" type="text" class="form-control" id="category"
@@ -50,13 +50,13 @@
                     <div class="mb-3">
                         <label for="thumbnails" class="form-label">Images (URL)</label>
                         <input type="url" class="form-control" id="thumbnails" name="thumbnails">
-                        <button type="button" class="btn btn-outline-success mt-2" id="btn-add-url">Add URL</button>
+                        <button type="button" class="btn btn-outline-info mt-2" id="btn-add-url">Add URL</button>
                     </div>
                     <div id="box-url" class="d-flex flex-column"></div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-            <button type="reset" class="btn btn-outline-danger">Delete</button>
+            <button type="submit" class="btn btn-outline-success mt-5">Submit</button>
+            <button type="reset" class="btn btn-outline-danger mt-5">Delete</button>
         </form>
     </div>
 </div>

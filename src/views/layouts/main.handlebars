@@ -13,7 +13,7 @@
 
 <body>
     <header class="mt-5 container">
-        <div class="button-container" >
+        <div class="button-container">
             <a class="button" href="/products">
                 <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024"
                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -22,14 +22,18 @@
                     </path>
                 </svg>
             </a>
-            <a class="button">
-                <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+
+            <form class="input-container">
+               
+                    <input type="text" name="query" class="input" placeholder="Buscar...">
+                <svg class="icon-search " stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                     aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
                     </path>
                 </svg>
-            </a>
+            </form>
+
             <a class="button" href="/realtimeproducts">
                 <svg class="icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
                     height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +42,7 @@
                     </path>
                 </svg>
             </a>
-            <a class="button">
+            <a class="button" href="/carts/66c2a14395490f4f1439f2c9">
                 <svg class="icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                     stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
                     xmlns="http://www.w3.org/2000/svg">
@@ -53,11 +57,20 @@
 
 
 
+
+
     {{{ body }}}
+
+
+    <footer class="mt-4 mb-4 container">
+        
+            FOOTER
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e7d1877029.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
     <script src="/js/index.js"></script>
 </body>

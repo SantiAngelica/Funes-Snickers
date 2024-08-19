@@ -3,11 +3,12 @@ const socket = io()
 
 
 function DeleteProd(pid) {
-    console.log(pid)
+  
     Swal.fire({
         title: "Desea eliminar el producto?",
         showCancelButton: true,
         confirmButtonText: "Elminar",
+        icon: "warning"
 
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
@@ -20,7 +21,9 @@ function DeleteProd(pid) {
 }
 
 
+
 function LoadProds(arrProds) {
+    console.log(arrProds)
     const boxRealTime = document.getElementById("box-real-time")
     boxRealTime.innerHTML = ``
     arrProds.forEach(prod => {
@@ -32,53 +35,52 @@ function LoadProds(arrProds) {
                 <img src=${prod.thumbnails[0]} class="card-img-top" alt=${prod.tittle}>
             </figure>
             <div class="card-body">
-                <h5 class="card-title">${prod.tittle}</h5>
+                <h5 class="card-title mb-0">${prod.tittle}</h5>
+                <p class="card-category">${prod.category.charAt(0).toUpperCase() + prod.category.slice(1).toLowerCase()}</p>
                 <p class="card-description">${prod.description}</p>
                 <p class="card-text">$${prod.price}</p>
-                <a href="/realtimeproducts/edit/${prod.id}" class="btn btn-outline-info">Editar</a>
+                <a href="/realtimeproducts/edit/${prod._id}" class="btn btn-outline-info">Editar</a>
                 <button class="btn btn-delete btn-outline-danger">Elminar</button>
             </div>
         `
         let btnDelete = newProd.querySelector(".btn-delete")
 
-        btnDelete.addEventListener("click", () => DeleteProd(prod.id))
+        btnDelete.addEventListener("click", () => DeleteProd(prod._id))
+
         boxRealTime.append(newProd)
     });
 }
 
-//CARGAR PRODUCTOS
-socket.on("list products", (arrProds) => {
-    LoadProds(arrProds)
-})
+
+
+
+
+
+
+
 
 
 
 //MANEJO DE LAS URL
-
-
-
-
-
-
-const thumbnails = []
-function DelUrl(urlIndex){
-    thumbnails.splice(urlIndex,1)
+let thumbnails = []
+function DelUrl(url) {
+    const index = thumbnails.findIndex(x => x == url)
+    thumbnails.splice(index, 1)
     LoadUrl(thumbnails)
 }
 function LoadUrl(thumbnails) {
     boxUrl.innerHTML = ``
-    let conter = -1
+    
     thumbnails.forEach(url => {
-        conter+=1
         const newUrlshow = document.createElement("div")
         newUrlshow.classList.add("mb-2")
         newUrlshow.classList.add("link-container")
         newUrlshow.innerHTML = `
-           <a href="${url}" target="_blank" class="truncated-link">${url}</a>
-           <button type="button" class="btn-close link-button" aria-label="Close"></button>
+        <a href="${url}" target="_blank" class="truncated-link">${url}</a>
+        <button type="button" class="btn-close link-button" aria-label="Close"></button>
         `
         newUrlshow.querySelector(".link-button").addEventListener("click", () => {
-            DelUrl(conter)
+            DelUrl(url)
         })
         boxUrl.appendChild(newUrlshow)
     })
@@ -97,7 +99,7 @@ btnAdd.addEventListener("click", () => {
         LoadUrl(thumbnails)
         url.value = ''
     }
-
+    
 })
 
 
@@ -113,12 +115,7 @@ btnAdd.addEventListener("click", () => {
 
 
 //SUBMIT FORMULARIO DE NUEVO PROD
-
-document.getElementById("form").addEventListener("submit", (evt) => {
-    evt.preventDefault()
-    const data = Object.fromEntries(
-        new FormData(evt.target)
-    )
+function CreateProd(data) {
     data.status == "true" ? data.status = true : data.status = false
     const newProd = {
         category: data.category,
@@ -129,25 +126,53 @@ document.getElementById("form").addEventListener("submit", (evt) => {
         code: data.code,
         status: data.status,
         thumbnails: thumbnails
-
+        
     }
     socket.emit("form data", newProd)
+}
+
+
+
+
+document.getElementById("form").addEventListener("submit", (evt) => {
+    evt.preventDefault()
+    Swal.fire({
+        title: "Seguro que desea crear el producto?",
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        icon: "question"
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            const data = Object.fromEntries(
+                new FormData(evt.target)
+            )
+            CreateProd(data)
+            document.getElementById("form").reset()
+            thumbnails = []
+            LoadUrl(thumbnails)
+            
+        }
+        
+        
+    });
+    
+    
+    
 })
 
-socket.on("response add prod", (res) => {
-    if (res == 2) {
-        document.getElementById("codeHelp").innerText = "No puede haber codigos repetidos"
-    }
-    if (res == 3) {
-        document.getElementById("codeHelp").innerText = ""
-        Swal.fire({
-            icon: "success",
-            title: "Nuevo producto agregado!",
-            showConfirmButton: true,
-            timer: 1500
-        })
-    }
+
+
+//CARGAR PRODUCTOS
+socket.on("list products", (arrProds) => {
+    LoadProds(arrProds)
 })
+
+
+socket.on("response add prod", (res) => {
+    console.log(res)
+})
+
 
 
 
