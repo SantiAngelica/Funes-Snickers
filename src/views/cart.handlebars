@@ -1,15 +1,26 @@
 <div class="container"> 
     <header class="d-flex justify-content-between container header-cart mt-4">
+        {{#if cart.products}}
         <h1 class="mb-0">Carrito</h1>
+        {{else}}
+        <h1 class="mb-0">Carrito vacio</h1>
+        {{/if}}
         <h2 class="mb-0">$</h2>
     </header>
-    <div class="container p-0 mt-4 box-cart d-flex flex-row justify-content-between">
+    <div class="container p-0 mt-4 box-cart d-flex  ">
+         {{#if cart.products}}
         <div class="cart">
             {{>cardCart }}
         </div>
-        <div class="cart-data d-flex flex-column align-items-center p-2 py-4">
-            <button id="delete-cart" class="btn mb-3 btn-outline-danger">Eliminar carrito</button>
-            <button id="buy-cart" class=" btn btn-outline-success">Finalizar compra</button>
+        {{else}}
+        <div class="cart-null">
+            <h2>Aqui se mostraran sus productos</h2>
+        </div>
+        {{/if}}
+        
+        <div class="cart-data d-flex justify-content-center p-1 py-2">
+            <button id="delete-cart" class="btn me-3 btn-outline-danger delete-cart">Eliminar carrito</button>
+            <button id="buy-cart" class=" btn btn-outline-success buy-cart">Finalizar compra</button>
         </div>
     </div>
 </div>
