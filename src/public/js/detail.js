@@ -31,7 +31,6 @@ const price = total.getAttribute("data-price")
 plus.addEventListener("click", () => {
     quantity.innerText < 5 && quantity.innerText++
     const showPrice = price * Number(quantity.innerText)
-    console.log(price)
     total.innerText = `$${showPrice}.000` 
 })
 minus.addEventListener("click", () => {

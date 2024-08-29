@@ -23,7 +23,6 @@ function DeleteProd(pid) {
 
 
 function LoadProds(arrProds) {
-    console.log(arrProds)
     const boxRealTime = document.getElementById("box-real-time")
     boxRealTime.innerHTML = ``
     arrProds.forEach(prod => {
@@ -169,9 +168,6 @@ socket.on("list products", (arrProds) => {
 })
 
 
-socket.on("response add prod", (res) => {
-    console.log(res)
-})
 
 
 

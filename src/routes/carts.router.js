@@ -54,7 +54,6 @@ router.delete("/:cid/products/:pid",async  (req, res) => {
     const cid = req.params.cid
     const cart = await manager.deleteOneProd(cid, pid)
     if(cart){
-        console.log(cart)
         res.send({status: "success", message: "Producto eliminado"})
     } else {
         res.status(404).send({ status: "incomplete", message: "error al eliminar producto" })

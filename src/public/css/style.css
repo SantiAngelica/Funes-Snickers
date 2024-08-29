@@ -85,8 +85,7 @@ footer {
   color: rgb(13, 202, 240);
 }
 
-/* ESTILOS DEL NAVBAR */
-/* From Uiverse.io by faxriddin20 */
+
 .button-container {
   display: flex;
   background-color: rgb(13, 202, 240);
@@ -443,6 +442,10 @@ footer {
   border: 1px solid green !important;
 }
 
+.delete-cart{
+  margin: 0px 20px 0px 0px !important
+}
+
 .delete-cart:hover {
   border: 1px solid red !important;
 }
@@ -485,8 +488,25 @@ footer {
 }
 
 
+.fa-xmark{
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover{
+    color: rgb(234, 30, 30);
+  }
+}
 
-
+.card-cart{
+  border: 1px solid rgba(0, 0, 0, 0.29);
+  border-radius: 15px;
+  padding-left: 0;
+  
+  .img-cart, .fig-cart{
+    border-top-left-radius: 15px ;
+    border-bottom-left-radius: 15px;
+  }
+  
+}
 
 
 
@@ -577,5 +597,26 @@ footer {
 
   .stock {
     margin-top: 150px;
+  }
+
+
+  .box-cart{
+
+    flex-direction: row;
+    justify-content: space-between;
+    .cart-data{
+      width: 20%;
+      flex-direction: column;
+      height: fit-content;
+      align-items: center;
+      padding: 20px 0px !important;
+      button{
+        width: fit-content;
+      }
+      .delete-cart{
+        margin: 0px 0px 20px 0px !important;
+      }
+    }
+   
   }
 }

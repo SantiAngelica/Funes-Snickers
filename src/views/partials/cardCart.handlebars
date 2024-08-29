@@ -1,10 +1,14 @@
 {{#each cart.products}}
 
-<div class="container d-flex align-items-center">
-    <figure class="fig-cart mb-0">
-        <img src={{this.product.thumbnails.[0]}} alt="" class="img-cart">
-    </figure>
-    <p class="mb-0 ms-4">{{this.product.tittle}}     <strong class="ms-3">x{{this.quantity}}</strong> </p>
+<div class="container d-flex align-items-center justify-content-between mb-5 card-cart">
+    <div class="d-flex align-items-center box-fig">
+        <figure class="fig-cart mb-0 ">
+            <img src={{this.product.thumbnails.[0]}} alt="" class="img-cart">
+        </figure>
+        <p class="mb-0 ms-4">{{this.product.tittle}} <strong class="ms-3">x{{this.quantity}}</strong> </p>
+        <strong class="mb-0 ms-2">${{this.product.price}}</strong>
+    </div>
+    <i class="fa-solid fa-xmark"></i>
 </div>
 
 {{/each }}

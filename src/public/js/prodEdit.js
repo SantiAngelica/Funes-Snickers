@@ -67,7 +67,7 @@ function SendForm(data){
         status: data.status,
         thumbnails: thumbnailsEdit
     }
-    console.log(prodEdit)
+   
     fetch(`/api/products/${pid}`, {
         method: 'PUT',
         headers: {
