@@ -56,7 +56,7 @@ router.delete("/:cid/products/:pid",async  (req, res) => {
     if(cart){
         res.send({status: "success", message: "Producto eliminado"})
     } else {
-        res.status(404).send({ status: "incomplete", message: "error al eliminar producto" })
+        res.status(500).send({ status: "incomplete", message: "error al eliminar producto" })
     }
 })
 
@@ -69,7 +69,7 @@ router.put("/:cid", async (req, res) => {
     if(cart){
         res.send({status: "success", message: "Productos actualizados"})
     } else {
-        res.status(404).send({ status: "incomplete", message: "error al actualizar los productos" })
+        res.status(500).send({ status: "incomplete", message: "error al actualizar los productos" })
     }
 })
 
@@ -85,7 +85,7 @@ router.put("/:cid/products/:pid", async (req, res) => {
         res.send({status: "success", message: "cantidad editada correctamente"})
     }else{
         console.log("error al actualizar la cantidad")
-        res.status(404).send({ status: "incomplete", message: "error al actualizar la cantidad" })
+        res.status(500).send({ status: "incomplete", message: "error al actualizar la cantidad" })
     }
 })
 
@@ -98,7 +98,7 @@ router.delete("/:cid", async (req, res) => {
         res.send({status: "success", message: "productos del carrito eliminados correctamente"})
     }else{
         console.log("error al eliminar los productos del carrito")
-        res.status(404).send({ status: "incomplete", message: "error al eliminar los productos del carrito" })
+        res.status(500).send({ status: "incomplete", message: "error al eliminar los productos del carrito" })
     }
 })
 
