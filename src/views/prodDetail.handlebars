@@ -21,7 +21,7 @@
                 <p class="card-detail-text fw-bold">${{prod.price}}</p>
                 <p class="card-detail-desc  disabled">{{prod.description}}</p>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-outline-primary"  id="btn-add-prod"  data-id={{prod._id}}>
                     Añadir al carrito
                 </button>
                 <p class="card-detail-low disabled mb-0 stock">Stock: {{prod.stock}}</p>
@@ -36,7 +36,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="staticBackdrop-{{this._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -68,5 +68,7 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/detail.js"></script>
+<script src="/js/price.js"></script>
+<script src="/js/verifSession.js"></script>

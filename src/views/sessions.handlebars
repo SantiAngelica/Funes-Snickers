@@ -1,0 +1,49 @@
+
+
+  <div class="container-login container my-4
+  " id="container-login">
+        <div class="form-container sign-up">
+            <form action="/api/sessions/register" method="POST">
+                <h1>Registrate</h1>
+                <br>
+                <input type="text" placeholder="Nombre" name="first_name" required>
+                <input type="text" placeholder="Apellido" name="last_name" required>
+                <input type="number" placeholder="Edad" name="age" required>
+                <input type="email" placeholder="Email" name="email" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="/api/sessions/login"  id="loginForm"  method="POST">
+                <h1>Iniciar sesion</h1>
+                <div class="social-icons">
+                    <a href="api/sessions/google" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="api/sessions/github" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <a href="#">Forget Your Password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenido!</h1>
+                    <p>Introduce tu informacion personal para poder registrarte</p>
+                    <button class="hidden btn-toggle" id="login">Iniciar sesion</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hola, amigo!</h1>
+                    <p>Introduce tus credenciales para iniciar sesion</p>
+                    <button class="hidden btn-toggle" id="register">Registrate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="/js/login.js"></script>

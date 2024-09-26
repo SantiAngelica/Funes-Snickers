@@ -8,15 +8,50 @@
         <p class="card-description">{{this.description}}</p>
         <p class="card-text">${{this.price}}</p>
 
-        <button type="button" class="btn btn-outline-primary" >
+        <button type="button" id="btn-add-prod" class="btn btn-outline-primary"  data-id={{this._id}}>
             Añadir al carrito
         </button>
         <a href="/products/{{this.category}}/{{this._id}}" class="btn btn-outline-info"><i
                 class="fa-solid fa-eye"></i></i></a>
     </div>
 </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop-{{this._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{this.tittle}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <figure class="fig-modal">
+                    <img src={{this.thumbnails.[0]}} alt="" class="img-modal">
+                </figure>
+                <div class="detail-modal">
+                    <div class="price">Precio por unidad: <p class="fw-bold price-modal">${{this.price}}</p></div>
+                    <div class="quantity d-flex">
+                        <button class="btn btn-outline-info fs-5 btn-quantity" id="minus"><i class="fa-solid fa-minus"></i></button>
+                        <p class=" mb-0 fs-4 mx-3" id="quantity-p">1</p>
+                        <button class="btn btn-outline-info fs-5 btn-quantity" id="plus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                     <div class="price mt-2">Precio total: <p class="fw-bold price-modal" id="total-price" data-price={{this.price}}>${{this.price}}</p></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{/each}}
 
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/price.js"></script>
+ <script src="/js/verifSession.js"></script>
 
