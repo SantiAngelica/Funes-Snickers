@@ -1,6 +1,8 @@
-import { Router } from "express";
+import {Router} from "express";
+
+
 const router = Router()
-import fs from "fs"
+
 import CartManager from "../dao/db/cart-manager-db.js";
 const manager = new CartManager()
 
@@ -25,7 +27,7 @@ router.post("/:cid/products/:pid/:qty", async (req, res) => {
     let quantity = req.params.qty
     let cart = await manager.addProdToCart(cid, pid, quantity)
     if (cart) {
-        res.send({ status: "success", message: "producto agregado al carrito!" })
+        res.status(200).send({ status: "success", message: "producto agregado al carrito!" })
     } else {
         res.status(404).send({ status: "incomplete", message: "Carrito no encontrado :(" })
     }

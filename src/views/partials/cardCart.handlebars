@@ -5,10 +5,15 @@
         <figure class="fig-cart mb-0 ">
             <img src={{this.product.thumbnails.[0]}} alt="" class="img-cart">
         </figure>
-        <p class="mb-0 ms-4">{{this.product.tittle}} <strong class="ms-3">x{{this.quantity}}</strong> </p>
-        <strong class="mb-0 ms-2">${{this.product.price}}</strong>
+        <p class="mb-0 "><strong class="ms-3 me-4">x{{this.quantity}}</strong>{{this.product.tittle}}  </p>
     </div>
-    <i class="fa-solid fa-xmark"></i>
+    <div class="d-flex">
+        <strong class="mb-0 me-4">$<strong class="price-cart" data-price={{this.product.price}} data-q={{this.quantity}}></strong></strong>
+        <i class="fa-solid fa-xmark" id="delete-prod-cart" data-id={{this.product._id}}></i>
+    </div>
 </div>
 
 {{/each }}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="/js/cartPrice.js"></script>

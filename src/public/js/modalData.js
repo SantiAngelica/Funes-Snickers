@@ -1,24 +1,18 @@
+import { verificateSession } from "./verSes.js"
+
+
 const btnOpenModal = document.getElementsByClassName('btn-open-modal')
 const modalTittle = document.getElementById('staticBackdropLabel')
 const modalPrice = document.getElementById('price-modal')
 const ModalTotal = document.getElementById("total-price")
 const modalSrc = document.getElementById('src-modal')
 const quantityP = document.getElementById("quantity-p")
+const modalID = document.getElementById('btn-add-cart')
 let verSession
 
 
 
-async function verificateSession() {
-    let respuesta = await fetch('/api/sessions/current', {
-        method: 'GET',
-        credentials: 'include' 
-    })
-        .then(res => res.json())    
-        .then(data => {
-            return data
-        })
-    return respuesta
-}
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     verSession = await verificateSession()
@@ -30,11 +24,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 let price = Number(btn.getAttribute('data-price'))
                 let src = btn.getAttribute('data-src')
                 let tittle = btn.getAttribute('data-tittle')
+                let id = btn.getAttribute('data-id')
                 modalTittle.innerText = tittle
                 modalSrc.setAttribute("src", src)
                 modalPrice.innerText = price
                 ModalTotal.innerText = price
-                quantityP.innerText = 0 
+                quantityP.innerText = 1
+                modalID.setAttribute('data-id', id)
             })
         });
     }

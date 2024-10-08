@@ -1,5 +1,7 @@
-import passport  from "passport";
+import passport from "passport";
 
+import CartManager from '../db/cart-manager-db.js';
+const cartManager = new CartManager()
 
 
 import userModel from "../models/user.model.js";
@@ -24,8 +26,8 @@ const initializedPassport = () => {
     })
 
     passport.deserializeUser(async (id, done) => {
-        let user = await userModel.findById({_id: id});
-        done(null, user); 
+        let user = await userModel.findById({ _id: id });
+        done(null, user);
     })
 
 
@@ -37,14 +39,22 @@ const initializedPassport = () => {
         callbackURL: "http://localhost:8080/api/sessions/githubcallback"
     }, async (accessToken, refreshToken, profile, done) => {
         try {
-            let user = await userModel.findOne({email: profile._json.email})
-            if(!user){
+            let user = await userModel.findOne({ email: profile._json.email })
+            if (!user) {
+                const nameParts = profile._json.name.split(' ');
+                const first_name = nameParts[0];
+                const last_name = nameParts.slice(1).join(' ');
+
+                const newCart = await cartManager.newCart()
+
+                let admin = profile._json.email == "santiangelica410@gmail.com" ? true : false
                 let newUser = {
-                    first_name: profile._json.name,
+                    first_name: first_name,
                     email: profile._json.email,
-                    password: "",
-                    age: 37,
-                    last_name: ""
+                    password: "Sin password",
+                    last_name: last_name,
+                    role: admin ? 'admin' : 'user',
+                    cart: admin ? null : newCart._id
                 }
 
                 let result = await userModel.create(newUser)
@@ -64,12 +74,12 @@ const initializedPassport = () => {
     passport.use("current", new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
         secretOrKey: "palabrasecretaparatoken",
-        }, async (jwt_payload, done) => {
-            try {
-                return done(null, jwt_payload)
-            } catch (error) {
-                return done(error)
-            }
+    }, async (jwt_payload, done) => {
+        try {
+            return done(null, jwt_payload)
+        } catch (error) {
+            return done(error)
+        }
     }))
 
 
@@ -80,15 +90,19 @@ const initializedPassport = () => {
         callbackURL: "http://localhost:8080/api/sessions/googlecallback"
     }, async (accessToken, refreshToken, profile, done) => {
         try {
-            let user = await userModel.findOne({email: profile._json.email})
-            if(!user){
+            let user = await userModel.findOne({ email: profile._json.email })
+            if (!user) {
+                const newCart = await cartManager.newCart()
+
+                let admin = profile._json.email == "santiangelica410@gmail.com" ? true : false
+
                 let newUser = {
                     first_name: profile._json.given_name,
                     last_name: profile._json.family_name,
                     email: profile._json.email,
-                    password: "",
-                    age: 37,
-                    last_name: ""
+                    password: "Sin password",
+                    cart: admin ? null :  newCart._id,
+                    role: admin ? 'admin' : 'user'
                 }
 
                 let result = await userModel.create(newUser)
@@ -104,9 +118,9 @@ const initializedPassport = () => {
 }
 
 
-const cookieExtractor = (req) =>{
+const cookieExtractor = (req) => {
     let token = null
-    if(req && req.cookies){
+    if (req && req.cookies) {
         token = req.cookies["santiCookie"]
     }
     return token

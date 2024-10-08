@@ -1,4 +1,5 @@
-import { Router } from "express";
+import {Router} from 'express';
+
 const router = Router()
 import userModel from "../dao/models/user.model.js";
 
@@ -65,6 +66,7 @@ router.post("/login", async (req, res) => {
             role: user.role,
             cart: user.cart
         })
+        
 
         res.cookie("santiCookie", token, {maxAge: 60*60*1000, httpOnly: true}).redirect("/profile")
     } catch (error) {
@@ -80,12 +82,24 @@ router.get("/logout", (req, res) => {
 })
 
 //LOGIN CON GITHUB
-router.get("/github", passport.authenticate("github", {scope: ["user:email"]}) ,(req, res) => {})
-router.get("/githubcallback", passport.authenticate("github", { failureRedirect: "/login"}),
+router.get("/github", passport.authenticate("github", {scope: ["user:email"], session: false}) ,(req, res) => {})
+router.get("/githubcallback", passport.authenticate("github", { failureRedirect: "/sessions", session: false}),
 async (req, res) => {
-    req.session.user = req.user
-    req.session.login = true 
-    res.redirect("/profile")
+    try {
+        let user = req.user
+            let token = generateToken({
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                role: user.role,
+                cart: user.cart
+            })
+
+
+        res.cookie("santiCookie", token, {maxAge: 60*60*1000, httpOnly: true}).redirect("/profile")
+    } catch (error) {
+        res.status(500).send("Error interno del servidor")
+    }
 })
 
 
@@ -93,12 +107,24 @@ async (req, res) => {
 
 
 //LOGIN CON GOOGLE
-router.get("/google", passport.authenticate("google",{scope: ["profile", "email"]}), async(req, res) => {})
-router.get("/googlecallback", passport.authenticate("google", {failureRedirect: "/login"}),
+router.get("/google", passport.authenticate("google",{scope: ["profile", "email"], session: false}), async(req, res) => {})
+router.get("/googlecallback", passport.authenticate("google", {failureRedirect: "/sessions", session: false}),
 async (req, res) => {
-    req.session.user = req.user
-    req.session.login = true 
-    res.redirect("/profile")
+    try {
+        let user = req.user
+            let token = generateToken({
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                role: user.role,
+                cart: user.cart
+            })
+
+
+        res.cookie("santiCookie", token, {maxAge: 60*60*1000, httpOnly: true}).redirect("/profile")
+    } catch (error) {
+        res.status(500).send("Error interno del servidor")
+    }
 })
 
 

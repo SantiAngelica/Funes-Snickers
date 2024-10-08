@@ -36,8 +36,9 @@ function LoadProds(arrProds) {
             <div class="card-body">
                 <h5 class="card-title mb-0">${prod.tittle}</h5>
                 <p class="card-category">${prod.category.charAt(0).toUpperCase() + prod.category.slice(1).toLowerCase()}</p>
-                <p class="card-description">${prod.description}</p>
-                <p class="card-text">$${prod.price}</p>
+                <p class="card-description mn-0">${prod.description}</p>
+                <p class="card-description mb-0">${prod.code} - ${prod.stock}</p>
+                <p class="card-text">$${prod.price.toLocaleString()}</p>
                 <a href="/realtimeproducts/edit/${prod._id}" class="btn btn-outline-info">Editar</a>
                 <button class="btn btn-delete btn-outline-danger">Elminar</button>
             </div>

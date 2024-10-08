@@ -7,6 +7,7 @@
         <h5 class="card-title">{{this.tittle}}</h5>
         <p class="card-description">{{this.description}}</p>
         <p class="card-text">${{this.price}}</p>
+        <div class="buttons-card">
 
         <button type="button"  class="btn btn-outline-primary btn-open-modal"  data-tittle="{{this.tittle}}" data-src={{this.thumbnails.[0]}}
         data-price={{this.price}} data-id={{this._id}}>
@@ -14,6 +15,7 @@
         </button>
         <a href="/products/{{this.category}}/{{this._id}}" class="btn btn-outline-info"><i
                 class="fa-solid fa-eye"></i></i></a>
+        </div>
     </div>
 </div>
 {{/each}}
@@ -52,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-success">Añadir al carrito</button>
+                <button type="button" class="btn btn-outline-success" id="btn-add-cart" data-bs-dismiss="modal" >Añadir al carrito</button>
             </div>
         </div>
     </div>
@@ -61,5 +63,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/price.js"></script>
- <script src="/js/verifSession.js"></script>
+<script type="module" src="/js/modalData.js"></script>
+<script type="module" src="/js/addProd.js"></script>
 

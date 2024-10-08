@@ -8,7 +8,6 @@ const price = document.getElementById("price-modal")
 
 
 plus.addEventListener("click", () => {
-    console.log(quantity.innerText, total.innerText, )
     quantity.innerText < 5 && quantity.innerText++
     const showPrice = Number(price.innerText) * Number(quantity.innerText)
     total.innerText = showPrice.toLocaleString('es-ES')

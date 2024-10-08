@@ -1,4 +1,4 @@
-import { Router } from "express";
+import {Router} from 'express';
 
 
 import ProductManager from "../dao/db/product-manager-db.js";
@@ -51,7 +51,6 @@ router.get("/products/:cty/:pid", async (req, res) => {
 
 //EDITOR DE PRODCUTOS, SOLO PARA ADMIN
 router.get("/realtimeproducts",passportCall("current") , authorization("admin"), (req, res) => {
-    console.log(req.user)
     if(req.user.role != 'admin'){
         return res.status(403).send("acceso denegado")
     }

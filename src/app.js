@@ -1,8 +1,9 @@
 import express from "express"
 const app = express()
 import exphbs from "express-handlebars";
-const PUERTO = 8080
-import { Server } from "socket.io";
+
+import {Server} from "socket.io";
+
 
 import ProductManager from "./dao/db/product-manager-db.js";
 const manager = new ProductManager()
@@ -15,12 +16,19 @@ import sessionsRouter from './routes/sessions.router.js'
 import "./db.js"
 
 import cookieParser from "cookie-parser";
-import session from "express-session";
-import MongoStore from "connect-mongo";
+
+import DataBase from "./db.js";
+const instanciaBD = DataBase.getInstancia(); 
 
 
 import passport from "passport";
 import initializedPassport from "./dao/config/passport.config.js";
+
+import cors from "cors"
+
+import configObject from "./dao/config/dotenv.config.js";
+const {puerto} = configObject
+
 
 
 
@@ -28,6 +36,8 @@ import initializedPassport from "./dao/config/passport.config.js";
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("./src/public"))
+app.use(cors())
+
 
 app.use(cookieParser())
 initializedPassport()
@@ -67,8 +77,8 @@ app.use("/", viewsRouter)
 
 
 //levantamos server
-const httpServer = app.listen(PUERTO, () => {
-    console.log(`Escuchando en el puerto ${PUERTO}`)
+const httpServer = app.listen(puerto, () => {
+    console.log(`Escuchando en el puerto ${puerto}`)
 })
 
 

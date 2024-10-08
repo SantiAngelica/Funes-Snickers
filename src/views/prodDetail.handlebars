@@ -32,8 +32,6 @@
     </div>
 </div>
 
-
-<!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,18 +45,26 @@
                     <img  alt="" class="img-modal" id="src-modal">
                 </figure>
                 <div class="detail-modal">
-                    <div class="price">Precio por unidad: <p class="fw-bold price-modal" id="price-modal"></p></div>
+                    <div class="price">Precio por unidad: 
+                        <div class="d-flex">
+                            <p class="fw-bold mb-0">$</p><p class="fw-bold price-modal" id="price-modal" ></p>
+                        </div>
+                    </div>
                     <div class="quantity d-flex">
                         <button class="btn btn-outline-info fs-5 btn-quantity " id="minus"><i class="fa-solid fa-minus"></i></button>
                         <p class=" mb-0 fs-4 mx-3 " id="quantity-p">1</p>
                         <button class="btn btn-outline-info fs-5 btn-quantity " id="plus"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                     <div class="price mt-2">Precio total: <p class="fw-bold price-modal " id="total-price"></p></div>
+                     <div class="price mt-2">Precio total: 
+                        <div class="d-flex">
+                            <p class="fw-bold mb-0">$</p><p class="fw-bold price-modal" id="total-price"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-success">Añadir al carrito</button>
+                <button type="button" class="btn btn-outline-success" id="btn-add-cart">Añadir al carrito</button>
             </div>
         </div>
     </div>
@@ -69,4 +75,5 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/detail.js"></script>
 <script src="/js/price.js"></script>
-<script src="/js/verifSession.js"></script>
+<script type="module" src="/js/modalData.js"></script>
+<script type="module" src="/js/addProd.js"></script>
