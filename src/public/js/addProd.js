@@ -4,7 +4,6 @@ import { verificateSession } from "./verSes.js"
 
 document.getElementById('btn-add-cart').addEventListener('click',async () => {
     let user = await verificateSession()
-    console.log("usuario:",user)
     if(user){
         const quantity = document.getElementById('quantity-p').innerText
         const prodID = document.getElementById('btn-add-cart').getAttribute('data-id')
@@ -13,16 +12,8 @@ document.getElementById('btn-add-cart').addEventListener('click',async () => {
         fetch(`/api/carts/${cartID}/products/${prodID}/${quantity}`,{
                 method: 'POST',
         })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json)
-            if(json.status == 'success'){
-                const prod = {
-                    src: document.getElementById("src-modal").getAttribute('src'),
-                    tittle: document.getElementById('staticBackdropLabel').innerText,
-                    quantity: quantity,
-                    total: document.getElementById("total-price").innerText
-                }
+        .then(res => {
+            if(res.status == 200){
                 Toastify({
                     className: "toastifyProd",
                     text: "Producto añadido correctamente!",

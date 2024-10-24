@@ -13,40 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
-const btnDeleteProd = document.getElementById('delete-prod-cart')
-btnDeleteProd.addEventListener('click', async () => {
-    const user = await verificateSession()
-    if(user){
-        let prodID = btnDeleteProd.getAttribute('data-id')
-        Swal.fire({
-            title: "Estas seguro?",
-            text: "El producto se eliminara de tu carrito",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, borralo!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`/api/carts/${user.cart}/products/${prodID}`, {
-                    method: 'DELETE'
-                })
-                .then(res => res.json())
-                .then(json => {
-                    if(json.status == 'success'){
-                        Swal.fire({
-                            title: "Eliminado!",
-                            text: "EL producto a sido eliminado",
-                            icon: "success"
-                        }).then(() => {
+const btnDeleteProd = document.getElementsByClassName('delete-prod-cart')
+Array.from(btnDeleteProd).forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const user = await verificateSession()
+        if(user){
+            let prodID = btn.getAttribute('data-id')
+            Swal.fire({
+                title: "Estas seguro?",
+                text: "El producto se eliminara de tu carrito",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, borralo!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/api/carts/${user.cart}/products/${prodID}`, {
+                        method: 'DELETE'
+                    })
+                    .then(res => {
+                        if(res.status == 200){
                             location.reload()
-                        });
-                    }
-                })
-              
-            }
-          });
-       
-    }
+                        }
+                    })
+        
+                  
+                }
+              });
+           
+        }
+});
 })
 

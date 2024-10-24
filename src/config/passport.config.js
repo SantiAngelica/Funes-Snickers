@@ -1,10 +1,10 @@
 import passport from "passport";
 
-import CartManager from '../db/cart-manager-db.js';
+import CartManager from '../dao/db/cart-manager-db.js';
 const cartManager = new CartManager()
 
 
-import userModel from "../models/user.model.js";
+import userModel from "../dao/models/user.model.js";
 
 
 import GitHubStrategy from "passport-github2"

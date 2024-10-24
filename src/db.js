@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import configObject from "./dao/config/dotenv.config.js";
+import configObject from "./config/dotenv.config.js";
 const { mongo_url } = configObject
 
 class DataBase {

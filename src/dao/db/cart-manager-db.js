@@ -40,10 +40,8 @@ class CartManager{
     async addProdToCart(cid, pid, quantity){
         try {
             const cart = await this.getCartById(cid)
-            
             const cartExist = cart.products.find(prod => prod.product._id.toString() == pid)
             if(cartExist){
-    
                 cartExist.quantity += Number(quantity)
             }else{
                 cart.products.push({product: pid, quantity: quantity})
