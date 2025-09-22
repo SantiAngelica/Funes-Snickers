@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken"
+import configObject from "../config/dotenv.config.js"
 
-const private_key = "palabrasecretaparatoken"
+const { jwt_decoder } = configObject
+const private_key = jwt_decoder
 
 const generateToken = (user) => {
     const token = jwt.sign(user, private_key, {expiresIn: "24h"})

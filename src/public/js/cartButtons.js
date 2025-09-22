@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     fetch(`/api/carts/${user.cart}`, {
                         method: 'delete'
                     }).then(res => {
-                        if(res.status == 200){
+                        if (res.status == 200) {
                             location.reload()
                         }
                     })
@@ -33,12 +33,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
         document.getElementById('buy-cart').addEventListener('click', async () => {
-            fetch(`/api/carts/${user.cart}/purchase`, {method: 'post'})
-            .then(res => {
-                if(res.status == 201){
-                    location.reload()
-                }
+            fetch(`/api/carts/${user.cart}/purchase`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
+                .then(res => {
+                    if (res.redirected) {
+                        window.location.href = res.url;  // Redirige a la URL de destino
+                    }
+                })
         })
     }
     cartTotalPrice.innerText = `$${calculateTotal(cart).toLocaleString()}`

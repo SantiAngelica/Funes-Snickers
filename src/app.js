@@ -2,14 +2,10 @@ import express from "express"
 const app = express()
 import exphbs from "express-handlebars";
 
-
-
 import cartRouter from './routes/carts.router.js'
 import productsRouter from './routes/products.router.js'
 import viewsRouter from './routes/views.router.js'
 import sessionsRouter from './routes/sessions.router.js'
-
-
 import cookieParser from "cookie-parser";
 
 import "./db.js"

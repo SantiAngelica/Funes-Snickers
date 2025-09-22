@@ -138,10 +138,13 @@ class CartController {
             const updateCart = await CartServices.updateAll(cart._id, {products: cartNOT})
 
             let ticket = await TicketServices.addTicket({purchaser: user.email}, cartOK)
-            respuesta(res, 201, ticket)
+
+            console.log("TICKETTT", ticket)
+
+            res.redirect(`/ticket/${ticket._id.toString()}`)
         } catch (error) {
             console.log(error)
-            respuesta(res, 404, 'error en el server')
+            res.status(404).send("error")
         }
     }
 }

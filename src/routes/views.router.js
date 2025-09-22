@@ -16,6 +16,10 @@ import ViewsController from '../controllers/views.controller.js';
 
 
 
+
+router.get("/", (req, res) => {
+    res.redirect("/products")
+})
 //LISTA TODOS LOS PRODUCTOS
 router.get("/products", ViewsController.showProducts)
 
@@ -37,12 +41,18 @@ router.get("/realtimeproducts/edit/:pid", passportCall('current'), authorization
 //CARRITO CON EL ID PROPORCIONADO
 router.get("/carts/:cid", ViewsController.showCartById)
 
-
 //VISTA PARA LOGEARSE Y REGISTRARSE
 router.get("/sessions", ViewsController.showSession)
 
 //PERFIL
 router.get("/profile", jwtValidator, ViewsController.showProfile)
+
+//TICKETS
+router.get("/ticket/:tid", ViewsController.showTicket)
+
+router.get("*", (req, res) => {
+    res.redirect("/products")
+})
 
 
 export default router
